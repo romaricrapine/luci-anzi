@@ -22,45 +22,88 @@
 
             <div class="sidebar">
                 {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_admin') }}">
-                    <span class="material-icons-sharp">admin_panel_settings</span>
-                    <h3>Panel Admin</h3>
-                </a>
+                    <a href="{{ path('app_admin') }}">
+                        <span class="material-icons-sharp">admin_panel_settings</span>
+                        <h3>Panel Admin</h3>
+                    </a>
                 {% endif %}
-                <a href="#">
-                    <span class="material-icons-sharp">grid_view</span>
-                    <h3>Dashboard</h3>
-                </a>
+
+                {% if app.request.attributes.get('_route') == 'app_dashboard' %}
+                    <a href="#" class="active">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                {% else %}
+                    <a href="#">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                {% endif %}
+
                 {# Todo: Listing des comptes de l'user #}
-                <a href="">
-                    <span class="material-icons-sharp">manage_accounts</span>
-                    <h3>Mes comptes</h3>
-                </a>
+                {% if app.request.attributes.get('_route') == 'app_show_account' %}
+                    <a href="" class="active">
+                        <span class="material-icons-sharp">manage_accounts</span>
+                        <h3>Mes comptes</h3>
+                    </a>
+                {% else %}
+                    <a href="">
+                        <span class="material-icons-sharp">manage_accounts</span>
+                        <h3>Mes comptes</h3>
+                    </a>
+                {% endif %}
+
                 {# Todo: Page indiquant comment acheter des comptes #}
-                <a href="">
-                    <span class="material-icons-sharp">person_add</span>
-                    <h3>Acheter un compte</h3>
-                </a>
+                {% if app.request.attributes.get('_route') == 'app_add_account' %}
+                    <a href="" class="active">
+                        <span class="material-icons-sharp">person_add</span>
+                        <h3>Acheter un compte</h3>
+                    </a>
+                {% else %}
+                    <a href="">
+                        <span class="material-icons-sharp">person_add</span>
+                        <h3>Acheter un compte</h3>
+                    </a>
+                {% endif %}
+
                 {# Todo: Listing des commandes dans le tableau #}
-                <a href="">
-                    <span class="material-icons-sharp">receipt_long</span>
-                    <h3>Mes commandes</h3>
-                </a>
+                {% if app.request.attributes.get('_route') == 'app_show_command' %}
+                    <a href="" class="active">
+                        <span class="material-icons-sharp">receipt_long</span>
+                        <h3>Mes commandes</h3>
+                    </a>
+                {% else %}
+                    <a href="">
+                        <span class="material-icons-sharp">receipt_long</span>
+                        <h3>Mes commandes</h3>
+                    </a>
+                {% endif %}
+
                 {# Todo: Listing des commandes avec leur revenus en forme de card #}
-                <a href="">
-                    <span class="material-icons-sharp">account_balance</span>
-                    <h3>Mes revenus</h3>
-                </a>
+                {% if app.request.attributes.get('_route') == 'app_balance' %}
+                    <a href="" class="active">
+                        <span class="material-icons-sharp">account_balance</span>
+                        <h3>Mes revenus</h3>
+                    </a>
+                {% else %}
+                    <a href="">
+                        <span class="material-icons-sharp">account_balance</span>
+                        <h3>Mes revenus</h3>
+                    </a>
+                {% endif %}
+
                 {# Todo: Lien du télégram #}
-                <a href="" class="active">
+                <a href="">
                     <span class="material-icons-sharp">tag</span>
                     <h3>Télégram</h3>
                 </a>
+
                 {# Todo: Lien du Discord #}
                 <a href="">
                     <span class="material-icons-sharp">tag</span>
                     <h3>Discord</h3>
                 </a>
+
                 <a href="{{ path('app_logout') }}">
                     <span class="material-icons-sharp">logout</span>
                     <h3>Déconnexion</h3>
@@ -120,31 +163,31 @@
                 <h2>Dernière commande Uber Eats</h2>
                 <table>
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Commande n°</th>
-                            <th>Prix TTC</th>
-                            <th>Revenu</th>
-                            <th>Status</th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Commande n°</th>
+                        <th>Prix TTC</th>
+                        <th>Revenu</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
-                        <tr>
-                            <td>02/12/2023</td>
-                            <td>d8073549</td>
-                            <td>50.50€</td>
-                            <td>25.25€</td>
-                            {# Todo: Conditions IF en fonction du status #}
-                            {# SI Status == "En cours" afficher le texte avec la class warning #}
-                            {# SI Status == "Terminer" afficher le texte avec la class success #}
-                            <td class="">En cours</td>
-                            <td class="primary">
-                                {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
-                                <a href="" class="primary important">Détails</a>
-                            </td>
-                        </tr>
+                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
+                    <tr>
+                        <td>02/12/2023</td>
+                        <td>d8073549</td>
+                        <td>50.50€</td>
+                        <td>25.25€</td>
+                        {# Todo: Conditions IF en fonction du status #}
+                        {# SI Status == "En cours" afficher le texte avec la class warning #}
+                        {# SI Status == "Terminer" afficher le texte avec la class success #}
+                        <td class="">En cours</td>
+                        <td class="primary">
+                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
+                            <a href="" class="primary important">Détails</a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
                 <a href="">Tout afficher</a>
