@@ -1,0 +1,249 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Discord Dashboard{% endblock %}
+
+{% block body %}
+
+    <body class="body-dashboard">
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    {# Todo: Ajouter le Logo #}
+                    <img src="{{ asset('build/images/logo_discord.svg') }}" alt="">
+                    {# Todo: Ajouter le Titre #}
+                    <h2 class="margin-0">Anzi & <span class="danger">Luci</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_admin') }}">
+                    <span class="material-icons-sharp">admin_panel_settings</span>
+                    <h3>Panel Admin</h3>
+                </a>
+                {% endif %}
+                <a href="#">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                {# Todo: Listing des comptes de l'user #}
+                <a href="">
+                    <span class="material-icons-sharp">manage_accounts</span>
+                    <h3>Mes comptes</h3>
+                </a>
+                {# Todo: Page indiquant comment acheter des comptes #}
+                <a href="">
+                    <span class="material-icons-sharp">person_add</span>
+                    <h3>Acheter un compte</h3>
+                </a>
+                {# Todo: Listing des commandes dans le tableau #}
+                <a href="">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Mes commandes</h3>
+                </a>
+                {# Todo: Listing des commandes avec leur revenus en forme de card #}
+                <a href="">
+                    <span class="material-icons-sharp">account_balance</span>
+                    <h3>Mes revenus</h3>
+                </a>
+                {# Todo: Lien du télégram #}
+                <a href="" class="active">
+                    <span class="material-icons-sharp">tag</span>
+                    <h3>Télégram</h3>
+                </a>
+                {# Todo: Lien du Discord #}
+                <a href="">
+                    <span class="material-icons-sharp">tag</span>
+                    <h3>Discord</h3>
+                </a>
+                <a href="{{ path('app_logout') }}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Déconnexion</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Dashboard</h1>
+            <div class="insights">
+                {# Todo: Afficher le montant des revenus générer en fonction du discordID #}
+                <div class="sales">
+                    <span class="material-icons-sharp">account_balance</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Revenu Total</h3>
+                            {# Todo: Afficher le montant des paiements envoyer par les clients #}
+                            <h1>10.50€</h1>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Toutes les commandes
+                    </small>
+                </div>
+                {# Todo: Afficher le nombre de compte en fonction du discordID #}
+                <div class="income">
+                    <span class="material-icons-sharp">manage_accounts</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Mes comptes</h3>
+                            {# Todo: Lister le nombre de compte acheter pour Uber #}
+                            <h1>3</h1>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Liste de mes comptes
+                    </small>
+                </div>
+                {# Todo: Afficher le montant de la commission en fonction du discordID #}
+                <div class="expenses">
+                    <span class="material-icons-sharp">paid</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Commission</h3>
+                            {# Todo: Afficher la commission calculer en BDD #}
+                            <h1>10.50€</h1>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Ma commission
+                    </small>
+                </div>
+            </div>
+
+            <div class="recent-order">
+                {# Todo: Si user = uber #}
+                <h2>Dernière commande Uber Eats</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Commande n°</th>
+                            <th>Prix TTC</th>
+                            <th>Revenu</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
+                        <tr>
+                            <td>02/12/2023</td>
+                            <td>d8073549</td>
+                            <td>50.50€</td>
+                            <td>25.25€</td>
+                            {# Todo: Conditions IF en fonction du status #}
+                            {# SI Status == "En cours" afficher le texte avec la class warning #}
+                            {# SI Status == "Terminer" afficher le texte avec la class success #}
+                            <td class="">En cours</td>
+                            <td class="primary">
+                                {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
+                                <a href="" class="primary important">Détails</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="">Tout afficher</a>
+
+                {# Todo: Si user = deliveroo #}
+                <h2>Dernière commande Deliveroo</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Commande n°</th>
+                        <th>Prix TTC</th>
+                        <th>Revenu</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
+                    <tr>
+                        <td>02/12/2023</td>
+                        <td>d8073549</td>
+                        <td>50.50€</td>
+                        <td>25.25€</td>
+                        {# Todo: Conditions IF en fonction du status #}
+                        {# SI Status == "En cours" afficher le texte avec la class warning #}
+                        {# SI Status == "Terminer" afficher le texte avec la class success #}
+                        <td class="">En cours</td>
+                        <td class="primary">
+                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
+                            <a href="" class="primary important">Détails</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="">Tout afficher</a>
+
+                {# Todo: Si user = refund #}
+                <h2>Dernière commande Refund</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Commande n°</th>
+                        <th>Prix TTC</th>
+                        <th>Revenu</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
+                    <tr>
+                        <td>02/12/2023</td>
+                        <td>d8073549</td>
+                        <td>50.50€</td>
+                        <td>25.25€</td>
+                        {# Todo: Conditions IF en fonction du status #}
+                        {# SI Status == "En cours" afficher le texte avec la class warning #}
+                        {# SI Status == "Terminer" afficher le texte avec la class success #}
+                        <td class="">En cours</td>
+                        <td class="primary">
+                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
+                            <a href="" class="primary important">Détails</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="">Tout afficher</a>
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Salut <b>{{ app.user.username }}</b></p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <small class="text-muted">Admin</small>
+                        {% else %}
+                            <small class="text-muted">Cuistot</small>
+                        {% endif %}
+                    </div>
+                    <div class="profile-photo">
+                        <img src="{{ app.user.avatarUrl }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('dashboard') }}
+    {% endblock %}
+
+    </body>
+
+{% endblock %}

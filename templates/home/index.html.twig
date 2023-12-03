@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+    <body class="body-connexion">
+
+    <main class="home-main">
+        {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="home-title">
+                <h1>Pour avoir accès au Dashboard merci de se connecter</h1>
+            </div>
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="home-button">
+                <form action="{{ path('app_discord_connect') }}" method="post">
+                    <input type="hidden" name="token" value="{{ csrf_token('discord-auth') }}">
+                    <button>
+                        <img src="{{ asset('build/images/logo_discord.svg') }}" alt="" width="12%">
+                        Connexion avec Discord
+                    </button>
+                </form>
+            </div>
+            <div class="home-info">
+                <p class="home-text-info">
+                    Si vous n'avez pas accès au Dashboard, merci de contacter un Adminitrateur sur le serveur :
+                </p>
+                <div class="home-extern">
+                    <div class="discord">
+                        <a href="#">
+                            <img src="{{ asset('build/images/logo_discord.svg') }}" alt="" width="20%">
+                            Discord
+                        </a>
+                    </div>
+                    <div class="telegram">
+                        <a href="#">
+                            <img src="{{ asset('build/images/logo_telegram.svg') }}" alt="" width="20%">
+                            Télégram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="home-title">
+                <h1>Vous êtes déjà connecter</h1>
+            </div>
+            <div class="home-button-connected">
+                <a href="{{ path('app_dashboard') }}">
+                    Dashboard
+                </a>
+            </div>
+            <div class="home-info">
+                <p class="home-text-info">
+                    Si vous rencontrez un problème, merci de contacter un Adminitrateur sur le serveur :
+                </p>
+                <div class="home-extern">
+                    <div class="discord">
+                        <a href="#">
+                            <img src="{{ asset('build/images/logo_discord.svg') }}" alt="" width="20%">
+                            Discord
+                        </a>
+                    </div>
+                    <div class="telegram">
+                        <a href="#">
+                            <img src="{{ asset('build/images/logo_telegram.svg') }}" alt="" width="20%">
+                            Télégram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+
+    </body>
+
+{% endblock %}
