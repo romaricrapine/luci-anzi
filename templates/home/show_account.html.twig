@@ -114,20 +114,6 @@
         <main>
             <h1>Dashboard</h1>
             <div class="insights">
-                {# Todo: Afficher le montant des revenus générer en fonction du discordID #}
-                <div class="sales">
-                    <span class="material-icons-sharp">account_balance</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Revenu Total</h3>
-                            {# Todo: Afficher le montant des paiements envoyer par les clients #}
-                            <h1>10.50€</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Toutes les commandes
-                    </small>
-                </div>
                 {# Todo: Afficher le nombre de compte en fonction du discordID #}
                 <div class="income">
                     <span class="material-icons-sharp">manage_accounts</span>
@@ -142,117 +128,24 @@
                         Liste de mes comptes
                     </small>
                 </div>
-                {# Todo: Afficher le montant de la commission en fonction du discordID #}
-                <div class="expenses">
-                    <span class="material-icons-sharp">paid</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Commission</h3>
-                            {# Todo: Afficher la commission calculer en BDD #}
-                            <h1>10.50€</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Ma commission
-                    </small>
-                </div>
             </div>
 
             <div class="recent-order">
-                {# Todo: Si user = uber #}
-                <h2>Dernière commande Uber Eats</h2>
+                {# Todo: Lister les comptes slice 5#}
+                <h2>Mes comptes</h2>
                 <table>
                     <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Commande n°</th>
-                        <th>Prix TTC</th>
-                        <th>Revenu</th>
-                        <th>Status</th>
-                        <th></th>
+                        <th>Adresse Mail</th>
+                        <th>Mot de Passe</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
                     <tr>
                         <td>02/12/2023</td>
-                        <td>d8073549</td>
-                        <td>50.50€</td>
-                        <td>25.25€</td>
-                        {# Todo: Conditions IF en fonction du status #}
-                        {# SI Status == "En cours" afficher le texte avec la class warning #}
-                        {# SI Status == "Terminer" afficher le texte avec la class success #}
-                        <td class="">En cours</td>
-                        <td class="primary">
-                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
-                            <a href="" class="primary important">Détails</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <a href="">Tout afficher</a>
-
-                {# Todo: Si user = deliveroo #}
-                <h2>Dernière commande Deliveroo</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Commande n°</th>
-                        <th>Prix TTC</th>
-                        <th>Revenu</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
-                    <tr>
-                        <td>02/12/2023</td>
-                        <td>d8073549</td>
-                        <td>50.50€</td>
-                        <td>25.25€</td>
-                        {# Todo: Conditions IF en fonction du status #}
-                        {# SI Status == "En cours" afficher le texte avec la class warning #}
-                        {# SI Status == "Terminer" afficher le texte avec la class success #}
-                        <td class="">En cours</td>
-                        <td class="primary">
-                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
-                            <a href="" class="primary important">Détails</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <a href="">Tout afficher</a>
-
-                {# Todo: Si user = refund #}
-                <h2>Dernière commande Refund</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Commande n°</th>
-                        <th>Prix TTC</th>
-                        <th>Revenu</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
-                    <tr>
-                        <td>02/12/2023</td>
-                        <td>d8073549</td>
-                        <td>50.50€</td>
-                        <td>25.25€</td>
-                        {# Todo: Conditions IF en fonction du status #}
-                        {# SI Status == "En cours" afficher le texte avec la class warning #}
-                        {# SI Status == "Terminer" afficher le texte avec la class success #}
-                        <td class="">En cours</td>
-                        <td class="primary">
-                            {# Todo: Envoyer sur la page du ticket en cours en fonction du numéro de commande #}
-                            <a href="" class="primary important">Détails</a>
-                        </td>
+                        <td>blablabla@gmail.com</td>
+                        <td>JeSuisUnMotDePasse9713</td>
                     </tr>
                     </tbody>
                 </table>
