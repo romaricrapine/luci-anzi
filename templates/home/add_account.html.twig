@@ -1,18 +1,191 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Discord Check{% endblock %}
+{% block title %}Discord Dashboard{% endblock %}
 
 {% block body %}
 
-    <body class="body-check">
+    <body class="body-dashboard">
 
-    <main class="home-main">
-        <div class="home-title">
-            <h1>Acheter un compte</h1>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    {# Todo: Ajouter le Logo #}
+                    <img src="{{ asset('build/images/logo_discord.svg') }}" alt="">
+                    {# Todo: Ajouter le Titre #}
+                    <h2 class="margin-0">Anzi & <span class="danger">Luci</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_admin') }}">
+                        <span class="material-icons-sharp">admin_panel_settings</span>
+                        <h3>Panel Admin</h3>
+                    </a>
+                {% endif %}
+
+                {% if app.request.attributes.get('_route') == 'app_dashboard' %}
+                    <a href="{{ path('app_dashboard') }}" class="active">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_dashboard') }}">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                {% endif %}
+
+                {# Todo: Listing des comptes de l'user #}
+                {% if app.request.attributes.get('_route') == 'app_show_account' %}
+                    <a href="{{ path('app_show_account') }}" class="active">
+                        <span class="material-icons-sharp">manage_accounts</span>
+                        <h3>Mes comptes</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_show_account') }}">
+                        <span class="material-icons-sharp">manage_accounts</span>
+                        <h3>Mes comptes</h3>
+                    </a>
+                {% endif %}
+
+                {# Todo: Page indiquant comment acheter des comptes #}
+                {% if app.request.attributes.get('_route') == 'app_add_account' %}
+                    <a href="{{ path('app_add_account') }}" class="active">
+                        <span class="material-icons-sharp">person_add</span>
+                        <h3>Acheter un compte</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_add_account') }}">
+                        <span class="material-icons-sharp">person_add</span>
+                        <h3>Acheter un compte</h3>
+                    </a>
+                {% endif %}
+
+                {# Todo: Listing des commandes dans le tableau #}
+                {% if app.request.attributes.get('_route') == 'app_show_order' %}
+                    <a href="{{ path('app_show_order') }}" class="active">
+                        <span class="material-icons-sharp">receipt_long</span>
+                        <h3>Mes commandes</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_show_order') }}">
+                        <span class="material-icons-sharp">receipt_long</span>
+                        <h3>Mes commandes</h3>
+                    </a>
+                {% endif %}
+
+                {# Todo: Listing des commandes avec leur revenus en forme de card #}
+                {% if app.request.attributes.get('_route') == 'app_balance' %}
+                    <a href="{{ path('app_balance') }}" class="active">
+                        <span class="material-icons-sharp">account_balance</span>
+                        <h3>Mes revenus</h3>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_balance') }}">
+                        <span class="material-icons-sharp">account_balance</span>
+                        <h3>Mes revenus</h3>
+                    </a>
+                {% endif %}
+
+                {# Todo: Lien du télégram #}
+                <a href="">
+                    <span class="material-icons-sharp">tag</span>
+                    <h3>Télégram</h3>
+                </a>
+
+                {# Todo: Lien du Discord #}
+                <a href="">
+                    <span class="material-icons-sharp">tag</span>
+                    <h3>Discord</h3>
+                </a>
+
+                <a href="{{ path('app_logout') }}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Déconnexion</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Dashboard</h1>
+            <div class="insights">
+                {# Todo: Afficher le montant de la commission en fonction du discordID #}
+                <div class="expenses">
+                    <span class="material-icons-sharp">paid</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Afin d'acheter des comptes</h3>
+                            {# Todo: Afficher la commission calculer en BDD #}
+                            <h1>Créer un ticket sur le Télégram</h1>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Réponse dans l'heure MAXIMUM 8h -> 22h
+                    </small>
+                </div>
+
+                {# Todo: Afficher le nombre de compte en fonction du discordID #}
+                <div class="income">
+                    <span class="material-icons-sharp">manage_accounts</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Mes comptes</h3>
+                            {# Todo: Lister le nombre de compte acheter pour Uber #}
+                            <h1>3</h1>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Liste de mes comptes
+                    </small>
+                </div>
+
+                <div class="sales">
+                    <span class="material-icons-sharp">share</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3><a href="https://t.me/chef_lucifer" class="">TELEGRAM</a></h3>
+
+                            <h3><a href="https://discord.com">DISCORD</a></h3>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p>Salut <b>{{ app.user.username }}</b></p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <small class="text-muted">Admin</small>
+                        {% else %}
+                            <small class="text-muted">Cuistot</small>
+                        {% endif %}
+                    </div>
+                    <div class="profile-photo">
+                        <img src="{{ app.user.avatarUrl }}" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+
+    </div>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('dashboard') }}
+    {% endblock %}
 
     </body>
 
 {% endblock %}
-
