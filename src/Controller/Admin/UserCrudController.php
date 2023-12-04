@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -20,18 +23,19 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('email')
-                ->setLabel('Email')
-                ->setHelp('<p>Ceci n\'est pas obligatoire pour la création d\'un Utilisateurs.</p>'),
             TextField::new('username')
                 ->setLabel('Pseudo Discord')
                 ->setHelp('<p>Ceci n\'est pas obligatoire pour la création d\'un Utilisateurs.</p>'),
             TextField::new('discord_id')
                 ->setLabel('Discord ID')
                 ->setHelp('<p style="color: red;text-transform: uppercase">Ceci est obligatoire pour la création d\'un Utilisateurs.</p>'),
-            TextField::new('access_token')
-                ->setLabel('Access Token')
-                ->setHelp('<p>Ceci n\'est pas obligatoire pour la création d\'un Utilisateurs.</p>'),
+            ArrayField::new('roles')
+                ->setHelp('
+                    <p style="color: red">Ajouter ROLE_ADMIN sous AUCUN PRETEXTE.</p>
+                    <p style="color: #95ff99">Ajouter ROLE_UBER pour les Cuistots Uber.</p>
+                    <p style="color: #95ff99">Ajouter ROLE_DELIVEROO pour les Cuistots Deli.</p>
+                    <p style="color: red">Ne pas toucher au ROLE_USER</p>
+                ')
         ];
     }
 

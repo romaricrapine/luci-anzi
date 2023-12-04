@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\UberAccountSale;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -16,6 +15,10 @@ class DashboardController extends AbstractDashboardController
     #[Route('/dashboard/admin', name: 'app_admin')]
     public function index(): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_dashboard');
+        }
+
         return $this->render('admin/index.html.twig');
     }
 
@@ -27,21 +30,16 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToRoute('Dashboard Utilisateur', 'fa fa-home', 'app_dashboard');
+        yield MenuItem::linkToUrl('Dashboard Utilisateur', 'fa fa-home', '/dashboard');
 
         yield MenuItem::section('Administration', 'fa-solid fa-hashtag');
         yield MenuItem::subMenu('Utilisateurs', 'fas fa-users')
             ->setSubItems([
                 MenuItem::linkToCrud('Gestion', 'fa-solid fa-user-gear', User::class)
             ]);
-        yield MenuItem::subMenu('Comptes Uber ', 'fas fa-users')
-            ->setSubItems([
-                MenuItem::linkToCrud('Compte à Vendre', 'fa-solid fa-user-gear', UberAccountSale::class)
-            ]);
 
         yield MenuItem::section('Logs', 'fa-regular fa-folder-open');
         yield MenuItem::linkToRoute('Logs Uber/Deliveroo', 'fa-solid fa-burger', 'app_dashboard');
-        yield MenuItem::linkToRoute('Logs Refund', 'fa-solid fa-hand-holding-dollar', 'app_dashboard');
         yield MenuItem::linkToRoute('Logs Abonnement', 'fa-solid fa-rotate', 'app_dashboard');
     }
 

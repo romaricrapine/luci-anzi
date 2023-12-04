@@ -113,55 +113,12 @@
 
         <main>
             <h1>Dashboard</h1>
-            <div class="insights">
-                {# Todo: Afficher le montant des revenus générer en fonction du discordID #}
-                <div class="sales">
-                    <span class="material-icons-sharp">account_balance</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Revenu Total</h3>
-                            {# Todo: Afficher le montant des paiements envoyer par les clients #}
-                            <h1>10.50€</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Toutes les commandes
-                    </small>
-                </div>
-                {# Todo: Afficher le nombre de compte en fonction du discordID #}
-                <div class="income">
-                    <span class="material-icons-sharp">manage_accounts</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Mes comptes</h3>
-                            {# Todo: Lister le nombre de compte acheter pour Uber #}
-                            <h1>3</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Liste de mes comptes
-                    </small>
-                </div>
-                {# Todo: Afficher le montant de la commission en fonction du discordID #}
-                <div class="expenses">
-                    <span class="material-icons-sharp">paid</span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Commission</h3>
-                            {# Todo: Afficher la commission calculer en BDD #}
-                            <h1>10.50€</h1>
-                        </div>
-                    </div>
-                    <small class="text-muted">
-                        Ma commission
-                    </small>
-                </div>
-            </div>
 
             <div class="recent-order">
+
                 {# Todo: Si user = uber #}
                 {% if is_granted('ROLE_UBER') %}
-                <h2>Dernière commande Uber Eats</h2>
+                <h2>Dernière commande UE</h2>
                 <table>
                     <thead>
                     <tr>
@@ -191,12 +148,12 @@
                     </tr>
                     </tbody>
                 </table>
-                <a href="">Tout afficher</a>
+                <a href="{{ path('app_show_order_UE') }}">Tout afficher</a>
                 {% endif %}
 
-                {% if is_granted('ROLE_DELIVEROO') %}
                 {# Todo: Si user = deliveroo #}
-                <h2>Dernière commande Deliveroo</h2>
+                {% if is_granted('ROLE_DELIVEROO') %}
+                <h2>Dernière commande DV</h2>
                 <table>
                     <thead>
                     <tr>
@@ -226,7 +183,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <a href="">Tout afficher</a>
+                <a href="{{ path('app_show_order_DV') }}">Tout afficher</a>
                 {% endif %}
 
             </div>
