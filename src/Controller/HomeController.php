@@ -18,7 +18,13 @@ class HomeController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function dashboard(): Response
     {
-        return $this->render('home/dasboard.html.twig');
+
+        $user = $this->getUser();
+        $numberOfLinkedAccounts = count($user->getAccounts());
+
+        return $this->render('home/dasboard.html.twig', [
+            'numberOfLinkedAccounts' => $numberOfLinkedAccounts,
+        ]);
     }
 
 

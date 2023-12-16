@@ -11,9 +11,9 @@
             <div class="top">
                 <div class="logo">
                     {# Todo: Ajouter le Logo #}
-                    <img src="{{ asset('build/images/logo_discord.svg') }}" alt="">
+                    <img src="{{ asset('build/images/logo.svg') }}" alt="">
                     {# Todo: Ajouter le Titre #}
-                    <h2 class="margin-0">Anzi & <span class="danger">Luci</span></h2>
+                    <h2 class="margin-0">Next<span class="danger">Store</span></h2>
                 </div>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">close</span>
@@ -135,7 +135,11 @@
                         <div class="left">
                             <h3>Mes comptes</h3>
                             {# Todo: Lister le nombre de compte acheter pour Uber #}
-                            <h1>3</h1>
+                            {% if numberOfLinkedAccounts == 0 %}
+                                <h1>Aucun compte</h1>
+                            {% else %}
+                                <h1>{{ numberOfLinkedAccounts }}</h1>
+                            {% endif %}
                         </div>
                     </div>
                     <small class="text-muted">
@@ -175,6 +179,7 @@
                     </thead>
                     <tbody>
                     {# Todo: Faire une boucle pour lister les status en fonction du DiscordID #}
+
                     <tr>
                         <td>02/12/2023</td>
                         <td>d8073549</td>

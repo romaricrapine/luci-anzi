@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -32,6 +34,19 @@ class User implements UserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $accessToken = null;
+
+    #[ORM\OneToMany(mappedBy: 'linkedUser', targetEntity: Account::class)]
+    private Collection $accounts;
+
+    public function __construct()
+    {
+        $this->accounts = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +152,36 @@ class User implements UserInterface
     public function setAccessToken(string $accessToken): static
     {
         $this->accessToken = $accessToken;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Account>
+     */
+    public function getAccounts(): Collection
+    {
+        return $this->accounts;
+    }
+
+    public function addAccount(Account $account): static
+    {
+        if (!$this->accounts->contains($account)) {
+            $this->accounts->add($account);
+            $account->setLinkedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccount(Account $account): static
+    {
+        if ($this->accounts->removeElement($account)) {
+            // set the owning side to null (unless already changed)
+            if ($account->getLinkedUser() === $this) {
+                $account->setLinkedUser(null);
+            }
+        }
 
         return $this;
     }

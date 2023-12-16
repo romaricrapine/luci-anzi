@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Account;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -36,6 +37,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Utilisateurs', 'fas fa-users')
             ->setSubItems([
                 MenuItem::linkToCrud('Gestion', 'fa-solid fa-user-gear', User::class)
+            ]);
+        yield MenuItem::subMenu('Compte Uber', 'fas fa-users')
+            ->setSubItems([
+                MenuItem::linkToCrud('Gestion', 'fa-solid fa-user-gear', Account::class)
             ]);
 
         yield MenuItem::section('Logs', 'fa-regular fa-folder-open');
